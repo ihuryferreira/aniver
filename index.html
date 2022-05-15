@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>365 Days CA</title>
+			<!---by Ihury----->
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<body>
+
+	<!---Sweet Alert---->
+	<div id="swal" class="swal">
+	   <img src="https://i.gifer.com/72Sz.gif">
+		<!--<img src="my_fote.jpeg">-->
+	   <h2>🥳 365 Dias 🥳</h2>
+	   <p>Eu Ihury Ferreira completo 1 ano (365 dias) 😁 na SoloLearn. No entanto, já faz mais de um ano 😅 desde que entrei na SoloLearn. Mas antes deste um ano (365 dias), o SoloLearn estava no meu dispositivo, mas não à minha vista 🙃.
+	   </p>
+	   <button id="swalConf">🎉 Vamos celebrar !!!</button>
+	</div>
+	<div id="musPer" class="swal">
+	   <h2>🎧</h2>
+	   <p>Você quer tocar música ??</p>
+	   <button id="pla">Sim</button><button id="dntPla">Não</button>
+	</div>
+	
+	<section id="mainSec">
+		<!-----Splashes------>
+		<div class="splCnt splCnt1">
+		   <div class="splash">
+			  <span class="s s1"></span>
+			  <span class="s s2"></span>
+			  <span class="s s3"></span>
+			  <span class="s s4"></span>
+			  <span class="s s5"></span>
+			  <span class="s s6"></span>
+		   </div>
+		</div>
+		<div class="splCnt splCnt2"></div>
+		<div class="splCnt splCnt3"></div>
+		<div class="splCnt splCnt4"></div>
+		<div class="splCnt splCnt5"></div>
+		<div class="splCnt splCnt6"></div>
+		<div class="splCnt splCnt7"></div>
+		<div class="splCnt splCnt8"></div>
+		
+		<!---Círculo Principal/Biggest---->
+		
+		<div id="mainCnt">
+		   <p id="text">
+			  <b id="dayC">
+				  <span>0</span>
+				  <span>0</span>
+				  <span>0</span>
+			  </b>
+			  <b id="txt">Dias</b>
+			  <b id="emoj">😁</b>
+		   </p>
+		</div>
+		<button id="congo">Feliz</button>
+		
+		<!----Congratulations----->
+		
+		<div id="congCon">
+			<div class="tile" id="whistle">🥳</div>
+			<div class="tile t1">😊 Obrigado 😊</div>
+			<div class="tile t2">Por</div>
+			<div class="tile t3">💐 concluir 💐</div>
+			<div class="tile t4">ME (Ihury) !!!</div>
+		</div>
+		
+	 </section>
+	 
+	 <!----Audio----->
+	 <audio id="audio" src="https://dl.dropbox.com/s/symzzm3a1ze07ny/gulabi-instrumental.mp3" controls loop></audio>
+	 
+<script>   
+	//----Variables Declaration----//
+	
+	var dntPla = document.querySelector("#dntPla"),
+	pla = document.querySelector("#pla"),
+	audio = document.querySelector("#audio"),
+	congCon = document.querySelector("#congCon"),
+	congo = document.querySelector("#congo"),
+	emoj = document.querySelector("#emoj"),
+	txt = document.querySelector("#txt"),
+	mainSec = document.querySelector("#mainSec"),
+	swal = document.querySelector("#swal"),
+	swalConf = document.querySelector("#swalConf"),
+	tile = document.querySelectorAll(".tile"),
+	dayC = document.querySelector("#dayC").childNodes,
+	splCnt = document.querySelectorAll(".splCnt"),
+	splData = document.querySelectorAll(".splCnt")[0].innerHTML;
+	
+	for(i=1;i<splCnt.length;i++){
+	   splCnt[i].innerHTML = splData;
+	}
+	
+	//----Days Count----//
+	var n = 0;
+	function dayCount(){
+	   if(n<=5){
+		  dayC[5].innerHTML=n;
+	   }
+	   else if(n>=7 && n<=12){
+		  dayC[3].innerHTML=n-6;
+	   }
+	   else if(n>17){
+		  clearInterval(count)
+		  txt.style.display = "block";
+		  setTimeout(function(){
+			 emoj.style.display="block";
+		  },500)
+		  splashh()
+	   }
+	   else if(n>=14 && n<=16){
+		  dayC[1].innerHTML=n-13;
+	   }
+	   n++
+	}
+	
+	//----Congratulating Function----//
+	
+	function tileAni(){
+	   congCon.style.display="block";
+	   mainSec.style.background="url('https://acegif.com/wp-content/gif/confetti-40.gif')";
+	   t = 0;
+	   tiling = setInterval(function(){
+		  tile[t].style.display="block";
+		  t++;
+		  if(t==tile.length){
+			 clearInterval(tiling)
+			 setTimeout(function(){
+				for(i=0;i<tile.length;i++){
+				   tile[i].style.opacity="0";
+				}
+				setTimeout(function(){
+				   for(i=0;i<tile.length;i++){
+					  tile[i].style.display="none";
+					  tile[i].style.opacity=1;
+					  congCon.style.display="none";
+				   }
+				},1000)
+			 },4000)
+		  }
+	   },800)
+	}
+	congo.addEventListener("click",tileAni)
+	
+	//---Splash Animation Caller----//
+	function splashh(){
+	   t = 0;
+	   splash = setInterval(function(){
+		  splCnt[t].style.display="block";
+		  if(t==splCnt.length-1){
+			 clearInterval(splash)
+			 setTimeout(function(){congo.style.display="block";},1000)
+		  }
+		  t++;
+	   },900)
+	}
+	
+	swalConf.addEventListener("click",function(){
+	   swal.style.display="none";
+	   mainSec.style.display="block";
+	   setTimeout(function(){
+		  count = setInterval(dayCount,200)
+	   },1000)
+	})
+	
+	//---Audio----//
+	
+	audio.volume = .7;
+	pla.addEventListener("click",function(){
+	   audio.play()
+	   mvOn()
+	})
+	
+	dntPla.addEventListener("click",mvOn)
+	
+	function mvOn(){
+	   document.querySelector("#musPer").style.display="none";
+	   swal.style.display="flex";
+	   swal.style.display="-webkit-box";
+	}
+	
+</script>
+</body>
+</html>
